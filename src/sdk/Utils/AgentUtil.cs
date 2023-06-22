@@ -15,11 +15,11 @@
 // </copyright>
 //-----------------------------------------------------------------------------
 
+using System.Collections.Concurrent;
 using Amazon.Runtime.Internal.Util;
 using Amazon.XRay.Recorder.Core;
 using Amazon.XRay.Recorder.Core.Exceptions;
 using Amazon.XRay.Recorder.Core.Internal.Entities;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Reflection;
@@ -111,7 +111,6 @@ namespace Amazon.XRay.Recorder.AutoInstrumentation.Utils
         /// </summary>
         public static void AddAutoInstrumentationMark()
         {
-
             try
             {
                 var segment = AWSXRayRecorder.Instance.GetEntity() as Segment;
@@ -130,8 +129,7 @@ namespace Amazon.XRay.Recorder.AutoInstrumentation.Utils
                 }
                 else
                 {
-                    ConcurrentDictionary<string, object> xrayAttribute = (ConcurrentDictionary<string, object>)awsAttribute["xray"];
-
+                    var xrayAttribute = (ConcurrentDictionary<string, object>) awsAttribute["xray"];
                     if (xrayAttribute == null)
                     {
                         _logger.DebugFormat("Unable to retrieve X-Ray dictionary from AWS dictionary of segment.");

@@ -112,7 +112,14 @@ namespace Amazon.XRay.Recorder.AutoInstrumentation.Utils
             _recorder.BeginSegment(segmentName, traceHeader.RootTraceId, traceHeader.ParentId, samplingResponse, timestamp);
 
             // Mark the segment as auto-instrumented
-            AgentUtil.AddAutoInstrumentationMark();
+            try
+            {
+                AgentUtil.AddAutoInstrumentationMark();
+            }
+            catch (Exception exception)
+            {
+                //ToDo Log this
+            }
 
             if (!AWSXRayRecorder.Instance.IsTracingDisabled())
             {

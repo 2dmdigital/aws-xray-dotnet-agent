@@ -31,7 +31,7 @@
 
   <ItemGroup>
     <PackageReference Include="AWSXRayRecorder.Handlers.AwsSdk" Version="2.8.3" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.6.0" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.7.1" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
